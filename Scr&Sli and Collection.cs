@@ -58,7 +58,6 @@ public class Jump02 : MonoBehaviour
     {
         if (flag)
         {
-            // huadongtiao.value=Time.time%1f;
             if (num % 2 != 0)
             {
                 huadongtiao.value += Time.deltaTime;
