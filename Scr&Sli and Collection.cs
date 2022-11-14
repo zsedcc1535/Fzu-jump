@@ -100,8 +100,6 @@ public class Jump02 : MonoBehaviour
 
             chuizhiValue = xulitiao.size;
             rb.AddForce((new Vector2(shuipingValue, chuizhiValue)) * pressForce * presstime, ForceMode2D.Impulse);
-            Debug.Log(shuipingValue);
-            Debug.Log(chuizhiValue);
             presstime = 0f;
             flag = true;
         }
