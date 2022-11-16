@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (coll.IsTouchingLayers(ground))//触碰地面图层
+        if (coll.IsTouchingLayers(ground)) //触碰地面图层
         {
             SliderMove();
             SliderStop();
@@ -82,19 +82,19 @@ public class PlayerController : MonoBehaviour
 
     void ScrollbarMaS()//蓄力条开始和停止移动
     {
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.W) && !flag)
         {
             presstime += Time.deltaTime;
             xulitiao.size = presstime / 2f;
         }
 
-        if (Input.GetKeyUp(KeyCode.W))
+        if (Input.GetKeyUp(KeyCode.W) && !flag)
         {
             Hide(UI_Src);
             Hide(UI_Sli);
 
-            huadongtiao.value = 0.5f;
-            num = 1;//重置滑动条滑钮至中心位
+            huadongtiao.value = 0.5f;//重置滑动条滑钮至中心位
+            num = 1;//重置滑动方向
 
             chuizhiValue = xulitiao.size;
             rb.AddForce((new Vector2(shuipingValue, chuizhiValue)) * pressForce * presstime, ForceMode2D.Impulse);
