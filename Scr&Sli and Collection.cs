@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerController : MonoBehaviour
+public class Jump02 : MonoBehaviour
 {
     public Rigidbody2D rb;
     public Scrollbar xulitiao;
@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        xulitiao = GetComponent<Scrollbar>();
+        huadongtiao = GetComponent<Slider>();
         coll = GetComponent<Collider2D>();
 
         Hide(UI_Src);//默认开始时蓄力条不出现
@@ -33,7 +35,9 @@ public class PlayerController : MonoBehaviour
         if (coll.IsTouchingLayers(ground))//触碰地面图层
         {
             SliderMove();
+
             SliderStop();
+
             ScrollbarMaS();
         }
 
@@ -54,6 +58,7 @@ public class PlayerController : MonoBehaviour
     {
         if (flag)
         {
+            // huadongtiao.value=Time.time%1f;
             if (num % 2 != 0)
             {
                 huadongtiao.value += Time.deltaTime;
@@ -93,11 +98,10 @@ public class PlayerController : MonoBehaviour
             Hide(UI_Src);
             Hide(UI_Sli);
 
-            huadongtiao.value = 0.5f;
-            num = 1;//重置滑动条滑钮至中心位
-
             chuizhiValue = xulitiao.size;
             rb.AddForce((new Vector2(shuipingValue, chuizhiValue)) * pressForce * presstime, ForceMode2D.Impulse);
+            Debug.Log(shuipingValue);
+            Debug.Log(chuizhiValue);
             presstime = 0f;
             flag = true;
         }
@@ -115,11 +119,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision) 
     {
         if (collision.tag == "Collection")//道具类交互
         {
             Destroy(collision.gameObject);
-        }
+        } 
     }
 }
